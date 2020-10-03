@@ -1,3 +1,3 @@
 # vim
-vim setup
-Ongoing: .vimrc configuration file
+vim setup\n
+Ongoing: building a world class .vimrc configuration file
