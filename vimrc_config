@@ -1,0 +1,47 @@
+"j-mdw .vimrc set up
+"TEXT RENDERING
+set encoding=utf-8
+set shiftwidth=4 
+set tabstop=4
+set autoindent
+"avoid wrapping a line in the middle of a word
+set linebreak 
+set scrolloff=1
+set sidescrolloff=5
+set wrap
+
+"USER INTERFACE
+set ruler
+"Always show the status line
+set laststatus=2
+set number
+set noerrorbells
+set wildmenu
+set mouse=a
+set title
+set background=dark
+syntax on
+colo darkblue
+
+"OTHER OPTIONS
+"Set undo limit to 500
+set history=500
+"Enables spell checking
+"set spell
+set backspace=eol,start,indent
+set magic
+"Show matching brackets when text editor is over them
+set showmatch
+
+"Delete trailing spaces on Save for .c files
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.c :call CleanExtraSpaces()
+endif
