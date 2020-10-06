@@ -10,6 +10,7 @@ set encoding=utf-8
 "set shiftwidth=4 
 set tabstop=4
 set autoindent
+set smartindent
 "Avoid wrapping a line in the middle of a word
 set linebreak 
 set scrolloff=1
@@ -31,7 +32,7 @@ set mouse=a
 "set title
 set background=dark
 syntax on
-colo torte 
+colo slate 
 
 "OTHER OPTIONS
 
@@ -39,9 +40,14 @@ colo torte
 set history=500
 "Enables spell checking (desabled here)
 "set spell
-set magic
+"set magic
 "Show matching brackets when text editor is over them
 set showmatch
+
+"Jump to the last position when reopening a file
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 "Delete trailing spaces on Save for .c files
 fun! CleanExtraSpaces()
